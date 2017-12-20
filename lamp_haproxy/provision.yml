@@ -1,0 +1,28 @@
+---
+  # Pass variable for which terraform command ... skip build if anything but apply
+#Provision some instances:
+- name: Provision Hosts
+  hosts: cdcug-hashi.cdcug.local
+  gather_facts: False
+  environment:
+    AWS_ACCESS_KEY_ID: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
+    AWS_SECRET_ACCESS_KEY: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+    TF_VAR_webserver_count: "{{ webserver_count }}"
+  tasks:
+    - name: Refresh the repo for TF
+      git:
+        repo: 'git@github.com:ArctiqTeam/event-ansible-automation.git'
+        dest: '~/event-ansible-automation'
+        key_file: '~/.ssh/GitHub_rsa'
+        update: yes
+        force: yes
+        accept_hostkey: yes
+    - name: Check if Terrform is ready
+      stat:
+        path: '/home/ansible/event-ansible-automation/lamp_haproxy/terraform/.terraform'
+      register: terraform_check
+      failed_when: terraform_check.stat.exists == "false"
+    - name: Launch Terraform Plan
+      shell: 'terraform.io apply -auto-approve >> terraform.log'
+      args:
+        chdir: '/home/ansible/event-ansible-automation/lamp_haproxy/terraform'

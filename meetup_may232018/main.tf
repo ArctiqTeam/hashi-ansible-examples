@@ -13,6 +13,7 @@ resource "aws_instance" "web" {
     delete_on_termination = "${var.volume_delete_on_termination}"
   }
 
+  user_data                   = "${file("userdata.sh")}"
   key_name                    = "tf-key"
   subnet_id                   = "subnet-a1803e9d"
   associate_public_ip_address = true

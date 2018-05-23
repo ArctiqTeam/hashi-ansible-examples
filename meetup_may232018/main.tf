@@ -4,7 +4,6 @@ resource "aws_key_pair" "tf-key" {
 }
 
 resource "aws_instance" "web" {
-  count         = 1
   ami           = "${lookup(var.AMIS, var.AWS_REGION)}"
   instance_type = "t2.micro"
 
@@ -23,7 +22,7 @@ resource "aws_instance" "web" {
   ]
 
   tags {
-    Name    = "web-${count.index}"
+    Name    = "web"
     sshUser = "centos"
     Group   = "webservers"
     Project = "aws_demo"

@@ -1,7 +1,8 @@
-terraform {
-  backend "s3" {
-    bucket = "arctiq-tim-tf-state"
-    key    = "hashicorp-meetup"
-    region = "us-east-1"
-  }
-}
+# terraform {
+#   backend "s3" {
+#     bucket = "arctiq-tim-tf-state"
+#     key    = "hashicorp-meetup"
+#     region = "us-east-1"
+#   }
+# }
+

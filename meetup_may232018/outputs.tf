@@ -3,5 +3,5 @@ output "address" {
 }
 
 output "ssh" {
-  value = "ssh -o pubkeyauthentication=no ${aws_instance.web.tags.sshUser}@${aws_instance.web.public_ip}"
+  value = "ssh ${aws_instance.web.tags.sshUser}@${aws_instance.web.public_ip}"
 }

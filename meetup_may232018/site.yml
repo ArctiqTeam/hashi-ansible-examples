@@ -42,15 +42,3 @@
       - git
     - name: http service state
       service: name=httpd state=started enabled=yes
-
-    # - name: Get Secret from Vault
-    #   uri:
-    #     url: "{{ lookup('env','VAULT_ADDR') }}/v1/ssh/creds/ssh_otp"
-    #     method: POST
-    #     headers:
-    #       X-Vault-Token: "{{ lookup('env','VAULT_TOKEN') }}"
-    #     body: '{"ip": "0.0.0.0"}'
-    #   register: vault_creds
-    #   delegate_to: localhost
-    #   run_once: yes
-    #   become: no

@@ -14,11 +14,11 @@ resource "aws_instance" "web" {
 
   user_data                   = "${file("userdata.sh")}"
   key_name                    = "tf-key"
-  subnet_id                   = "subnet-a1803e9d"
+  subnet_id                   = "subnet-"
   associate_public_ip_address = true
 
   vpc_security_group_ids = [
-    "sg-f384b18d",
+    "sg-",
   ]
 
   tags {
@@ -28,65 +28,3 @@ resource "aws_instance" "web" {
     Project = "aws_demo"
   }
 }
-
-# resource "aws_instance" "db" {
-#   ami = "${lookup(var.AMIS, var.AWS_REGION)}"
-#   instance_type = "t2.micro"
-#   root_block_device {
-#     volume_size = "${var.root_volume_size}"
-#     delete_on_termination = "${var.volume_delete_on_termination}"
-#   }
-#   key_name = "tf-key"
-#   subnet_id = "subnet-a1803e9d"
-#   associate_public_ip_address = true
-#   vpc_security_group_ids = [
-#     "sg-f384b18d"
-#   ]
-#   tags {
-#     Name = "db1"
-#     sshUser = "centos"
-#     Group = "dbservers"
-#     Project = "aws_demo"
-#   }
-# }
-# resource "aws_instance" "lb" {
-#   ami = "${lookup(var.AMIS, var.AWS_REGION)}"
-#   instance_type = "t2.micro"
-#   root_block_device {
-#     volume_size = "${var.root_volume_size}"
-#     delete_on_termination = "${var.volume_delete_on_termination}"
-#   }
-#   key_name = "tf-key"
-#   subnet_id = "subnet-a1803e9d"
-#   associate_public_ip_address = true
-#   vpc_security_group_ids = [
-#     "sg-f384b18d"
-#   ]
-#   tags {
-#     Name = "lb1"
-#     sshUser = "centos"
-#     Group = "lbservers"
-#     Project = "aws_demo"
-#   }
-# }
-# resource "aws_instance" "nagios" {
-#   ami = "${lookup(var.AMIS, var.AWS_REGION)}"
-#   instance_type = "t2.micro"
-#   root_block_device {
-#     volume_size = "${var.root_volume_size}"
-#     delete_on_termination = "${var.volume_delete_on_termination}"
-#   }
-#   key_name = "tf-key"
-#   subnet_id = "subnet-a1803e9d"
-#   associate_public_ip_address = true
-#   vpc_security_group_ids = [
-#     "sg-f384b18d"
-#   ]
-#   tags {
-#     Name = "nagios"
-#     sshUser = "centos"
-#     Group = "monitoring"
-#     Project = "aws_demo"
-#   }
-# }
-
